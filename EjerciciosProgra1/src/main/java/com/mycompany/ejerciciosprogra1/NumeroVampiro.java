@@ -8,45 +8,61 @@ package com.mycompany.ejerciciosprogra1;
  *
  * @author Usuario
  */
+import java.util.Scanner;
 import java.util.Arrays ;
 public class NumeroVampiro {
+    public static void principal() {
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Ingrese el rango inferior: ");
+        int lowerRange = scanner.nextInt();
 
-    public class Vampiro {
+        System.out.println("Ingrese el rango superior: ");
+        int upperRange = scanner.nextInt();
 
-        public static boolean esVampiro(int numero) {
-            String numeroStr = String.valueOf(numero);
-            int longitud = numeroStr.length();
-
-            for (int i = 1; i <= longitud / 2; i++) {
-                for (int j = i; j <= longitud - i; j++) {
-                    int colmillo1 = Integer.parseInt(numeroStr.substring(0, i));
-                    int colmillo2 = Integer.parseInt(numeroStr.substring(i, longitud));
-                    if (colmillo1 * colmillo2 == numero && colmillo1 % 10 != 0 && colmillo2 % 10 != 0) {
-                        char[] numArray = String.valueOf(numero).toCharArray();
-                        char[] colmilloArray = (String.valueOf(colmillo1) + String.valueOf(colmillo2)).toCharArray();
-                        Arrays.sort(numArray);
-                        Arrays.sort(colmilloArray);
-                        if (Arrays.equals(numArray, colmilloArray)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        public static void main(String[] args) {
-            int inicio = 1000;
-            int fin = 10000;
-
-            for (int i = inicio; i < fin; i++) {
-                if (esVampiro(i)) {
-                    System.out.println("El primer número vampiro es: " + i);
-                    break;
-                }
+        for (int number = lowerRange; number <= upperRange; number++) {
+            if (isVampireNumber(number)) {
+                System.out.println("El primer número vampiro en el rango dado es: " + number);
+                return;
             }
         }
+
+        System.out.println("No se encontró ningún número vampiro en el rango dado.");
     }
 
+    public static boolean isVampireNumber(int number) {
+        String numberStr = Integer.toString(number);
+        int numDigits = numberStr.length();
+
+        if (numDigits % 2 != 0) {
+            return false; // Un número vampiro debe tener un número par de dígitos
+        }
+
+        int halfDigits = numDigits / 2;
+        for (int i = (int) Math.pow(10, halfDigits - 1); i < Math.pow(10, halfDigits); i++) {
+            if (number % i == 0) {
+                int j = number / i;
+                if (i % 10 == 0 && j % 10 == 0) {
+                    continue; // Los colmillos no pueden terminar ambos en cero
+                }
+
+                String fang1 = Integer.toString(i);
+                String fang2 = Integer.toString(j);
+
+                char[] originalDigits = numberStr.toCharArray();
+                char[] fangDigits = (fang1 + fang2).toCharArray();
+
+                Arrays.sort(originalDigits);
+                Arrays.sort(fangDigits);
+
+                if (Arrays.equals(originalDigits, fangDigits)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }    
 }
+
+

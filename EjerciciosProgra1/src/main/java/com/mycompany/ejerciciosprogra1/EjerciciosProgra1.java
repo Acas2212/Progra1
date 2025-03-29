@@ -23,37 +23,23 @@ public class EjerciciosProgra1 {
             int opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1:
-                    FormulaCuadratica(); 
-                    break;
-                case 2:
-                    NumeroPalindromo(); 
-                    break;
-                case 3:
-                    NumeroVampiro();
-                    break;
-                case 4:
-                    PalabraPalindroma();
-                    break;                    
-                default:
-                    System.out.println("Opción no válida");
-                    break;
+                case 1 -> FormulaCuadratica.principal();
+                case 2 -> NumeroPalindromo.principal();
+                case 3 -> NumeroVampiro.principal();
+                case 4 -> PalabraPalindroma.principal();
+                default -> System.out.println("Opción no válida");
             }
         }
 
         private static void FormulaCuadratica() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
         private static void NumeroPalindromo() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
         private static void NumeroVampiro() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
         private static void PalabraPalindroma() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
     }

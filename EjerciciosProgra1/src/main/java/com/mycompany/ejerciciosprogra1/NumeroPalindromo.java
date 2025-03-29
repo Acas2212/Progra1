@@ -25,7 +25,7 @@ public class NumeroPalindromo {
             return original == revertido;
         }
 
-        public static void main(String[] args) {
+    public static void principal() {
             Scanner scanner = new Scanner(System.in);
 
             System.out.print("Introduce un número: ");
